@@ -1,6 +1,6 @@
 import serial
 
-connection = serial.SerialBase('COM4', 115200)
+connection = serial.SerialBase('COM0', 115200)
 
 
 def sendComand(comand):
