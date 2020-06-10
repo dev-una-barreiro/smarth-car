@@ -77,6 +77,6 @@ while True:
     # Imprime o valor da distância arredondado para duas casas decimais
 
     print(round(distance, 2))
-    serverInstance.sendMensage(round(distance, 2), 'sound-wave')
+    serverInstance.sendMensage(round(distance, 2), 'distancia')
     # Um pequeno delay para manter a média da taxa de amostragem
     time.sleep(1/sampling_rate)

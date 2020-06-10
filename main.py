@@ -1,7 +1,11 @@
 from project.packages.server import server
-from project.packages.arduino import integracaoArduino
+from project.packages.tensorML.TensorObservale import tensorOb
 
-server.serverInstance.sendMessage('arduino-command', integracaoArduino.sendComand(7),
-                                  '127.0.0.1', 4444, False)
+
+def handleDistancia(distancia):
+    tensorOb.updateObject('distancia', int(distancia))
+
+
+server.serverInstance.appendFunction('distancia', handleDistancia)
 
 server.serverInstance.createServer()

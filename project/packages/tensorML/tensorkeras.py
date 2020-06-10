@@ -23,9 +23,9 @@ class CreateNeural:
         dataset = self._load_training_csv()
         labels = dataset.pop('resultado')
         self.model = tf.keras.Sequential([
-            tf.keras.layers.Dense(64, activation='relu', input_shape=[
+            tf.keras.layers.Dense(64, activation='softmax', input_shape=[
                 len(dataset.keys())]),
-            tf.keras.layers.Dense(64, activation='relu'),
+            tf.keras.layers.Dense(32, activation='softmax'),
             tf.keras.layers.Dense(1)
         ])
         self.model.compile(optimizer='adam',
@@ -37,7 +37,8 @@ class CreateNeural:
 
     def predictValue(self, value: list):
         result = self.model.predict(value)
-        max_value = np.amax(result)
+        print(result)
+        max_value = round(np.amax(result))
         max_index_col = np.argmax(result)
 
         to_write = value[max_index_col]
@@ -52,3 +53,5 @@ class CreateNeural:
         with open(self.file_path, 'a') as fd:
             fd.write(f'\n{list_string[:-1]}')
 
+
+model = CreateNeural()

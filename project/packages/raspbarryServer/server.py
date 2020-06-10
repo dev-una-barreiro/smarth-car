@@ -4,7 +4,7 @@ import json
 
 class ServerRaspy:
 
-    HOST = socket.gethostname()
+    HOST = 'localhost'
     PORT = 4444
     socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -13,11 +13,18 @@ class ServerRaspy:
 
     def createCliente(self):
         self.socketInstance.connect((self.HOST, self.PORT))
-        self.socketInstance.bind((self.HOST, self.PORT))
 
     def sendMensage(self, mensage: str, type):
-        mensageJson = str(json.loads({'data': mensage, 'type': type}))
+
+        mensageJson = f'{json.dumps({"mensage": mensage, "type": type})};'
         self.socketInstance.send(mensageJson.encode())
+        # while True:
+        #     client, addr = self.socketInstance.accept()
+        #     data = client.recv(1024)
+        #     if data:
+        #         print(data)
+        #         break
 
 
 serverInstance = ServerRaspy()
+

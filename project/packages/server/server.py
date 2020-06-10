@@ -4,15 +4,15 @@ import json
 
 class Server:
 
-    HOST = socket.gethostname()
-    PORT = 5555
+    HOST = 'localhost'
+    PORT = 4444
     socketServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     functions = []
 
     def createServer(self):
         self.socketServer.bind((self.HOST, self.PORT))
-        self.socketServer.listen(5)
+        self.socketServer.listen(1)
         while True:
             print('waiting for a connection')
             client, addr = self.socketServer.accept()
@@ -21,14 +21,16 @@ class Server:
                 if len(self.functions) > 0:
                     for functionObject in self.functions:
                         data = client.recv(1024).decode('utf-8')
-                        dataJson = json.load(data)
 
-                        if dataJson['mensage'] == functionObject['mensageType']:
-                            resultFunction = functionObject['function']
-
-                            client.send(
-                                bytes(resultFunction(dataJson['data']), 'utf-8'))
-                            break
+                        listData = data.split(';')
+                        print(listData)
+                        for itemData in listData:
+                            if len(itemData) > 1:
+                                dataJson: str = json.loads(itemData)
+                                if dataJson['type'] == functionObject['mensageType']:
+                                    resultFunction = functionObject['function']
+                                    resultFunction(dataJson['mensage'])
+                client.close()
 
     def sendMessage(self, typeMessage, message, address, port, json=True):
         try:
@@ -43,11 +45,9 @@ class Server:
         except:
             print(f'{typeMessage} refuse')
 
-    def appendFunction(self, mensageType, func, args=False):
+    def appendFunction(self, mensageType, func):
         def executeFunction(dataMensage):
-            if args:
-                return func(args, dataMensage)
-            return func()
+            return func(dataMensage)
 
         functionDic = {
             'mensageType': mensageType,
