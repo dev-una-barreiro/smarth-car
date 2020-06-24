@@ -1,11 +1,12 @@
+from project.packages.env import currentEnv
 import socket
 import json
 
 
 class Server:
 
-    HOST = 'localhost'
-    PORT = 4444
+    HOST = currentEnv['serverHostNtk']
+    PORT = currentEnv['serverPort']
     socketServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     functions = []

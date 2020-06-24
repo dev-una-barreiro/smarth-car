@@ -1,5 +1,6 @@
-from project.packages.server import server
+import project.packages.env
 from project.packages.tensorML.TensorObservale import tensorOb
+from project.packages.server import server
 
 
 def handleDistancia(distancia):

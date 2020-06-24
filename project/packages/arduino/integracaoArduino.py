@@ -1,6 +1,7 @@
 import serial
+from project.packages.env import currentEnv
 
-connection = serial.Serial('/dev/ttyACM0', 9600)
+connection = serial.Serial(currentEnv['usbPath'], currentEnv['usbPort'])
 
 
 def sendComand(comand):

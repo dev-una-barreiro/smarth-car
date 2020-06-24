@@ -1,11 +1,14 @@
+# pylint: disable-all
+
+import project.packages.env as env
 import socket
 import json
 
 
 class ServerRaspy:
 
-    HOST = 'localhost'
-    PORT = 4444
+    HOST = env.currentEnv['serverHostRaspy']
+    PORT = env.currentEnv['serverPort']
     socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     def __init__(self):
@@ -18,13 +21,8 @@ class ServerRaspy:
 
         mensageJson = f'{json.dumps({"mensage": mensage, "type": type})};'
         self.socketInstance.send(mensageJson.encode())
-        # while True:
-        #     client, addr = self.socketInstance.accept()
-        #     data = client.recv(1024)
-        #     if data:
-        #         print(data)
-        #         break
 
 
 serverInstance = ServerRaspy()
 
+serverInstance.sendMensage(1, 'distance')

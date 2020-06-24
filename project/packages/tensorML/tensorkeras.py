@@ -1,3 +1,4 @@
+from project.packages.env import currentEnv
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -7,7 +8,7 @@ import csv
 class CreateNeural:
 
     model: tf.keras.Sequential
-    file_path = 'F:/Projetos/smarth-car/project/packages/tensorML/data.csv'
+    file_path = currentEnv['csvPath']
 
     def __init__(self):
         self._create_model()
