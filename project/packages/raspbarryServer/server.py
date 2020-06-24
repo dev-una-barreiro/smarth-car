@@ -25,4 +25,4 @@ class ServerRaspy:
 
 serverInstance = ServerRaspy()
 
-serverInstance.sendMensage(1, 'distance')
+serverInstance.sendMensage(1, 'distancia')

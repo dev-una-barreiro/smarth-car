@@ -26,8 +26,23 @@ or
     $ pip install -r requirements_dev.txt --user
 
 then:
+to dev
+
+    $ export PYTHON_CAR=development
+
+to production
+
+    $ export PYTHON_CAR=development
+
+then:
+
+To notebook server:
 
     $ python ./main.py
+
+To raspybarry
+
+    $ python ./raspy.py
 
 ## Estrutura de arquivos
 

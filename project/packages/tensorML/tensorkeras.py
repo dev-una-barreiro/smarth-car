@@ -1,5 +1,5 @@
 from project.packages.env import currentEnv
-import tensorflow as tf
+from tensorflow import keras
 import pandas as pd
 import numpy as np
 import csv
@@ -7,7 +7,7 @@ import csv
 
 class CreateNeural:
 
-    model: tf.keras.Sequential
+    model: keras.Sequential
     file_path = currentEnv['csvPath']
 
     def __init__(self):
@@ -23,29 +23,22 @@ class CreateNeural:
     def _create_model(self):
         dataset = self._load_training_csv()
         labels = dataset.pop('resultado')
-        self.model = tf.keras.Sequential([
-            tf.keras.layers.Dense(64, activation='softmax', input_shape=[
+        self.model = keras.Sequential([
+            keras.layers.Dense(32, activation='softmax', input_shape=[
                 len(dataset.keys())]),
-            tf.keras.layers.Dense(32, activation='softmax'),
-            tf.keras.layers.Dense(1)
+            keras.layers.Dense(1)
         ])
         self.model.compile(optimizer='adam',
-                           loss=tf.keras.losses.BinaryCrossentropy(
-                               from_logits=True),
+                           loss='mean_squared_error',
                            metrics=['accuracy'])
+        self.model.fit([dataset], labels)
 
-        self.model.fit(dataset, labels)
-
-    def predictValue(self, value: list):
+    def predictValue(self, value):
         result = self.model.predict(value)
-        print(result)
         max_value = round(np.amax(result))
         max_index_col = np.argmax(result)
-
-        to_write = value[max_index_col]
-
-        to_write.append(max_value)
-
+        to_write = np.array([*value[max_index_col], max_value])
+        print(to_write)
         self.write_cvs(to_write)
         return max_value
 
