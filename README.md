@@ -32,7 +32,7 @@ to dev
 
 to production
 
-    $ export PYTHON_CAR=development
+    $ export PYTHON_CAR=production
 
 then:
 
