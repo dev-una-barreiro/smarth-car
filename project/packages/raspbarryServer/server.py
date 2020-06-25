@@ -18,11 +18,9 @@ class ServerRaspy:
         self.socketInstance.connect((self.HOST, self.PORT))
 
     def sendMensage(self, mensage: str, type):
-
-        mensageJson = f'{json.dumps({"mensage": mensage, "type": type})};'
+        jsonData = json.dumps({"mensage": mensage, "type": type})
+        mensageJson = '{jsonData};'.format(jsonData=jsonData)
         self.socketInstance.send(mensageJson.encode())
 
 
 serverInstance = ServerRaspy()
-
-serverInstance.sendMensage(1, 'distancia')
