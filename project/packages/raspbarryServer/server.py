@@ -25,6 +25,5 @@ class ServerRaspy:
             self.socketInstance.sendall(str.encode(mensageJson))
         except:
             time.sleep(5)
-            self.socketInstance.connect((self.HOST, self.PORT))
             self.sendMensage(mensage, type)
             pass
