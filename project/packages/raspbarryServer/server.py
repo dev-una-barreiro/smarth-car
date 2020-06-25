@@ -22,5 +22,6 @@ class ServerRaspy:
             jsonData = json.dumps({"mensage": mensage, "type": type})
             mensageJson = '{jsonData};'.format(jsonData=jsonData)
             self.socketInstance.sendall(str.encode(mensageJson))
+            self.socketInstance.close()
         except:
             pass
