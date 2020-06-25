@@ -1,7 +1,7 @@
 import json
 import os
-
-path = f'{os.getcwd()}/project/packages/env.json'
+folderPath = os.getcwd()
+path = "{folderPath}/project/packages/env.json".format(folderPath=folderPath)
 envFile = open(path)
 
 env = json.loads(envFile.read())
