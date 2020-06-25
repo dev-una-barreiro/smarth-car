@@ -2,6 +2,7 @@
 import project.packages.env as env
 import socket
 import json
+import time
 
 
 class ServerRaspy:
@@ -23,4 +24,7 @@ class ServerRaspy:
             mensageJson = '{jsonData};'.format(jsonData=jsonData)
             self.socketInstance.sendall(str.encode(mensageJson))
         except:
+            time.sleep(3)
+            self.createCliente()
+            self.socketInstance.sendall(str.encode(mensageJson))
             pass
