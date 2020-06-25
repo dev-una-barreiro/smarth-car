@@ -8,6 +8,8 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 # Função para finalizar o acesso à GPIO do Raspberry de forma segura
 
+serverInstance = ServerRaspy()
+
 
 def clean():
     GPIO.cleanup()
@@ -77,7 +79,6 @@ while True:
     # Imprime o valor da distância arredondado para duas casas decimais
 
     print(round(distance, 2))
-    serverInstance = ServerRaspy()
     time.sleep(1)
     serverInstance.sendMensage(round(distance, 2), 'distancia')
     time.sleep(1)
