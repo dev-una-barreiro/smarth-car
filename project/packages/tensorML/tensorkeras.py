@@ -39,7 +39,7 @@ class CreateNeural:
         max_index_col = np.argmax(result)
         to_write = np.array([*value[max_index_col], max_value])
         print(to_write)
-        self.write_cvs(to_write)
+        # self.write_cvs(to_write)
         return max_value
 
     def write_cvs(self, value):
