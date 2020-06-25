@@ -19,7 +19,7 @@ class ServerRaspy:
     def sendMensage(self, mensage: str, type):
         jsonData = json.dumps({"mensage": mensage, "type": type})
         mensageJson = '{jsonData};'.format(jsonData=jsonData)
-        self.socketInstance.send(mensageJson.encode())
+        self.socketInstance.send(mensageJson)
 
 
 serverInstance = ServerRaspy()
