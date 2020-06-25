@@ -2,7 +2,7 @@
 import sys
 import time
 import signal
-from project.packages.raspbarryServer.server import serverInstance
+from project.packages.raspbarryServer.server import ServerRaspy
 import RPi.GPIO as GPIO
 # Define a numeração dos pinos de acordo com a placa
 GPIO.setmode(GPIO.BOARD)
@@ -77,6 +77,7 @@ while True:
     # Imprime o valor da distância arredondado para duas casas decimais
 
     print(round(distance, 2))
+    serverInstance = ServerRaspy()
     time.sleep(1)
     serverInstance.sendMensage(round(distance, 2), 'distancia')
     time.sleep(1)

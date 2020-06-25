@@ -24,6 +24,3 @@ class ServerRaspy:
             self.socketInstance.sendall(str.encode(mensageJson))
         except:
             pass
-
-
-serverInstance = ServerRaspy()
