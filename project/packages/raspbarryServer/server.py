@@ -7,7 +7,7 @@ import json
 
 class ServerRaspy:
 
-    HOST = env.currentEnv['serverHostRaspy']
+    HOST = env.currentEnv['serverHostNtk']
     PORT = env.currentEnv['serverPort']
     socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
