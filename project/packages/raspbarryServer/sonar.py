@@ -2,7 +2,7 @@
 import sys
 import time
 import signal
-from server import serverInstance
+from project.packages.raspbarryServer.server import serverInstance
 import RPi.GPIO as GPIO
 # Define a numeração dos pinos de acordo com a placa
 GPIO.setmode(GPIO.BOARD)
