@@ -17,9 +17,13 @@ class ServerRaspy:
         self.socketInstance.connect((self.HOST, self.PORT))
 
     def sendMensage(self, mensage: str, type):
-        jsonData = json.dumps({"mensage": mensage, "type": type})
-        mensageJson = '{jsonData};'.format(jsonData=jsonData)
-        self.socketInstance.sendall(str.encode(mensageJson))
+        try:
+            print(mensage)
+            jsonData = json.dumps({"mensage": mensage, "type": type})
+            mensageJson = '{jsonData};'.format(jsonData=jsonData)
+            self.socketInstance.sendall(str.encode(mensageJson))
+        except expression as identifier:
+            pass
 
 
 serverInstance = ServerRaspy()
