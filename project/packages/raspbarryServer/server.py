@@ -24,8 +24,7 @@ class ServerRaspy:
             mensageJson = '{jsonData};'.format(jsonData=jsonData)
             self.socketInstance.sendall(str.encode(mensageJson))
         except:
-            time.sleep(3)
+            time.sleep(5)
             self.socketInstance.connect((self.HOST, self.PORT))
-
-            self.socketInstance.sendall(str.encode(mensageJson))
+            self.sendMensage(mensage, type)
             pass
