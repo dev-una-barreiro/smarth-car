@@ -1,5 +1,4 @@
 # pylint: disable-all
-import project.packages.raspbarryServer.sonar
 import project.packages.env as env
 import socket
 import json
