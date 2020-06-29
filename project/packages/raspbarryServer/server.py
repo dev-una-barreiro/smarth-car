@@ -19,8 +19,8 @@ def sendMensage(mensage: str, type):
         mensageJson = '{jsonData};'.format(jsonData=jsonData)
         socketInstance.send(str.encode(
             mensageJson))
-        time.sleep(1)
     except:
+        time.sleep(1)
         print('recall')
         socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         socketInstance.connect((HOSTNTB, PORT))
