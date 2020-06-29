@@ -7,7 +7,8 @@ import time
 
 class ServerRaspy:
 
-    HOST = env.currentEnv['serverHostNtk']
+    HOST = env.currentEnv['serverHostRaspy']
+    HOSTNTB = env.currentEnv['serverHostNtk']
     PORT = env.currentEnv['serverPort']
 
     def __init__(self):
@@ -30,7 +31,8 @@ class ServerRaspy:
             print(mensage)
             jsonData = json.dumps({"mensage": mensage, "type": type})
             mensageJson = '{jsonData};'.format(jsonData=jsonData)
-            self.socketInstance.send(str.encode(mensageJson))
+            self.socketInstance.sendto(str.encode(
+                mensageJson), (self.HOSTNTB, self.PORT))
         except:
             time.sleep(5)
             self.sendMensage(mensage, type)
