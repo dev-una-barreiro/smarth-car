@@ -16,7 +16,7 @@ class ServerRaspy:
 
     def createCliente(self):
         self.socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socketInstance.bind((HOST, PORT))
+        self.socketInstance.bind((self.HOST, self.PORT))
         self.socketInstance.listen(10)
         while True:
             client, addr = socketClient.accept()
