@@ -18,13 +18,6 @@ class ServerRaspy:
         self.socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socketInstance.bind((self.HOST, self.PORT))
         self.socketInstance.listen(10)
-        while True:
-            client, addr = self.socketInstance.accept()
-            data = client.recv(1024)
-            if data:
-                print('Received', repr(data.decode('utf-8')))
-            else:
-                print('await')
 
     def sendMensage(self, mensage: str, type):
         try:
