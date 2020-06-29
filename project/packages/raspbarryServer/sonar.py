@@ -42,8 +42,6 @@ GPIO.setup(ECHO, GPIO.IN)
 # Inicializa TRIG em nível lógico baixo
 GPIO.output(TRIG, False)
 time.sleep(1)
-print('distnacia teste')
-serverInstance.sendMensage(80, 'distancia')
 
 print("Sampling Rate:", sampling_rate, "Hz")
 print("Distances (cm)")
