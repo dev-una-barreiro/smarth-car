@@ -12,6 +12,7 @@ class Server:
     functions = []
 
     def createServer(self):
+        print(self.HOST)
         self.socketServer.bind((self.HOST, self.PORT))
         self.socketServer.listen(10)
         while True:
