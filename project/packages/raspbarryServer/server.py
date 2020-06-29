@@ -19,13 +19,12 @@ class ServerRaspy:
 
     def sendMensage(self, mensage: str, type):
         try:
-            print(mensage)
+            print(self.HOSTNTB, self.PORT)
             jsonData = json.dumps({"mensage": mensage, "type": type})
             mensageJson = '{jsonData};'.format(jsonData=jsonData)
             self.socketInstance.sendto(str.encode(
                 mensageJson), (self.HOSTNTB, self.PORT))
         except:
-            time.sleep(5)
             self.sendMensage(mensage, type)
             pass
 
