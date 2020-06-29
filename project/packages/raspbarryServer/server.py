@@ -16,8 +16,6 @@ class ServerRaspy:
 
     def createCliente(self):
         self.socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socketInstance.bind((self.HOST, self.PORT))
-        self.socketInstance.listen(10)
 
     def sendMensage(self, mensage: str, type):
         try:
