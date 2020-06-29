@@ -7,7 +7,7 @@ class Server:
 
     HOST = currentEnv['serverHostNtk']
     PORT = currentEnv['serverPort']
-    socketServer = socket.socket(socket.AF_INET, socket.SO_KEEPALIVE)
+    socketServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     functions = []
 
@@ -23,9 +23,9 @@ class Server:
                 if len(self.functions) > 0:
                     for functionObject in self.functions:
                         data = client.recv(1024).decode('utf-8')
+                        print(data)
 
                         listData = data.split(';')
-                        print(listData)
                         for itemData in listData:
                             if len(itemData) > 1:
                                 dataJson: str = json.loads(itemData)
