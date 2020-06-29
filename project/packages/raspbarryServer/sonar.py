@@ -2,13 +2,11 @@
 import sys
 import time
 import signal
-from project.packages.raspbarryServer.server import ServerRaspy
+from project.packages.raspbarryServer.server import serverInstance
 import RPi.GPIO as GPIO
 # Define a numeração dos pinos de acordo com a placa
 GPIO.setmode(GPIO.BOARD)
 # Função para finalizar o acesso à GPIO do Raspberry de forma segura
-
-serverInstance = ServerRaspy()
 
 
 def clean():
