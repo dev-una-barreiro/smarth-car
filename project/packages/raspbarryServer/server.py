@@ -19,7 +19,7 @@ class ServerRaspy:
         self.socketInstance.bind((self.HOST, self.PORT))
         self.socketInstance.listen(10)
         while True:
-            client, addr = socketClient.accept()
+            client, addr = self.socketInstance.accept()
             data = client.recv(1024)
             if data:
                 print('Received', repr(data.decode('utf-8')))
