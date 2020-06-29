@@ -4,26 +4,17 @@ import socket
 import json
 import time
 
+HOST = env.currentEnv['serverHostRaspy']
+HOSTNTB = env.currentEnv['serverHostNtk']
+PORT = env.currentEnv['serverPort']
 
-class ServerRaspy:
-
-    HOST = env.currentEnv['serverHostRaspy']
-    HOSTNTB = env.currentEnv['serverHostNtk']
-    PORT = env.currentEnv['serverPort']
-
-    def __init__(self):
-        self.createCliente()
-
-    def createCliente(self):
-        self.socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
-    def sendMensage(self, mensage: str, type):
-        print(self.HOSTNTB, self.PORT)
-        jsonData = json.dumps({"mensage": mensage, "type": type})
-        mensageJson = '{jsonData};'.format(jsonData=jsonData)
-        self.socketInstance.connect((self.HOSTNTB, self.PORT))
-        self.socketInstance.send(str.encode(
-            mensageJson))
+socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socketInstance.connect((self.HOSTNTB, self.PORT))
 
 
-serverInstance = ServerRaspy()
+def sendMensage(self, mensage: str, type):
+    print(self.HOSTNTB, self.PORT)
+    jsonData = json.dumps({"mensage": mensage, "type": type})
+    mensageJson = '{jsonData};'.format(jsonData=jsonData)
+    socketInstance.send(str.encode(
+        mensageJson))
