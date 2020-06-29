@@ -13,8 +13,15 @@ socketInstance.connect((HOSTNTB, PORT))
 
 
 def sendMensage(mensage: str, type):
-    print(HOSTNTB, PORT)
-    jsonData = json.dumps({"mensage": mensage, "type": type})
-    mensageJson = '{jsonData};'.format(jsonData=jsonData)
-    socketInstance.send(str.encode(
-        mensageJson))
+    try:
+        print(HOSTNTB, PORT)
+        jsonData = json.dumps({"mensage": mensage, "type": type})
+        mensageJson = '{jsonData};'.format(jsonData=jsonData)
+        socketInstance.send(str.encode(
+            mensageJson))
+        time.sleep(1)
+    except:
+        print('recall')
+        socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socketInstance.connect((HOSTNTB, PORT))
+        sendMensage(mensage, type)
