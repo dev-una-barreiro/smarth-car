@@ -11,6 +11,8 @@ class Server:
 
     functions = []
 
+    # def handleClient(self, client, addr):
+
     def createServer(self):
         print(self.HOST)
         self.socketServer.bind((self.HOST, self.PORT))
@@ -32,7 +34,6 @@ class Server:
                                 if dataJson['type'] == functionObject['mensageType']:
                                     resultFunction = functionObject['function']
                                     resultFunction(dataJson['mensage'])
-                client.close()
 
     def sendMessage(self, typeMessage, message, address, port, json=True):
         try:
