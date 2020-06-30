@@ -39,6 +39,7 @@ class Server:
                 print('Connected by', addr)
                 if len(self.functions) > 0:
                     data = client.recv(1024).decode('utf-8')
+                    print(data)
                     listData = data.split(';')
                     for functionObject in self.functions:
                         for itemData in listData:
@@ -48,7 +49,6 @@ class Server:
                                     resultFunction = functionObject['function']
                                     resultFunction(dataJson['mensage'])
                 client.send('1'.encode())
-                client.close()
             # thread = threading.Thread(
             #     target=self.handle_client, args=(client, addr))
             # thread.start()
