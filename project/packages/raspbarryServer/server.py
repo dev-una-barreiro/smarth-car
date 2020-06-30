@@ -9,7 +9,7 @@ HOSTNTB = env.currentEnv['serverHostNtk']
 PORT = env.currentEnv['serverPort']
 
 socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socketInstance.bind((HOSTNTB, PORT))
+socketInstance.connect((HOSTNTB, PORT))
 
 
 def sendMensage(mensage: str, type):
