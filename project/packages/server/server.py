@@ -38,10 +38,9 @@ class Server:
             with client:
                 print('Connected by', addr)
                 if len(self.functions) > 0:
+                    data = client.recv(1024).decode('utf-8')
+                    listData = data.split(';')
                     for functionObject in self.functions:
-                        data = client.recv(1024).decode('utf-8')
-
-                        listData = data.split(';')
                         for itemData in listData:
                             if len(itemData) > 1:
                                 dataJson: str = json.loads(itemData)
