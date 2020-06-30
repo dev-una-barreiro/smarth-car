@@ -33,13 +33,12 @@ class Server:
         self.socketServer.bind((self.HOST, self.PORT))
         while True:
             print('waiting for a connection')
-            client, addr = self.socketServer.accept()
+            data, client = self.socketServer.recvfrom(1024)
             with client:
-                print('Connected by', addr)
+                print('Connected by', client)
                 if len(self.functions) > 0:
-                    data = client.recv(1024).decode('utf-8')
-                    print(data)
-                    listData = data.split(';')
+                    listData = data.decode('utf-8').split(';')
+                    print(listData)
                     for functionObject in self.functions:
                         for itemData in listData:
                             if len(itemData) > 1:
