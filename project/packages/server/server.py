@@ -31,7 +31,6 @@ class Server:
 
     def createServer(self):
         self.socketServer.bind((self.HOST, self.PORT))
-        self.socketServer.listen(10)
         while True:
             print('waiting for a connection')
             client, addr = self.socketServer.accept()
