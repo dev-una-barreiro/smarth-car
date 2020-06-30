@@ -8,7 +8,7 @@ HOST = env.currentEnv['serverHostRaspy']
 HOSTNTB = env.currentEnv['serverHostNtk']
 PORT = env.currentEnv['serverPort']
 
-socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socketInstance = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 socketInstance.connect((HOSTNTB, PORT))
 
 
