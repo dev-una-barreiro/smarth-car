@@ -8,7 +8,7 @@ class Server:
 
     HOST = currentEnv['serverHostNtk']
     PORT = currentEnv['serverPort']
-    socketServer = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    socketServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     functions = []
 
