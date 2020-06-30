@@ -48,7 +48,7 @@ class Server:
                                 if dataJson['type'] == functionObject['mensageType']:
                                     resultFunction = functionObject['function']
                                     resultFunction(dataJson['mensage'])
-                client.send(1)
+                client.send('1'.encode())
                 client.close()
             # thread = threading.Thread(
             #     target=self.handle_client, args=(client, addr))
