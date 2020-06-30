@@ -22,14 +22,14 @@ class Server:
                 if len(self.functions) > 0:
                     for functionObject in self.functions:
                         data = client.recv(1024).decode('utf-8')
-                        print(data)
-                        # listData = data.split(';')
-                        # for itemData in listData:
-                        #     if len(itemData) > 1:
-                        #         dataJson: str = json.loads(itemData)
-                        #         if dataJson['type'] == functionObject['mensageType']:
-                        #             resultFunction = functionObject['function']
-                        #             resultFunction(dataJson['mensage'])
+
+                        listData = data.split(';')
+                        for itemData in listData:
+                            if len(itemData) > 1:
+                                dataJson: str = json.loads(itemData)
+                                if dataJson['type'] == functionObject['mensageType']:
+                                    resultFunction = functionObject['function']
+                                    resultFunction(dataJson['mensage'])
 
     def sendMessage(self, typeMessage, message, address, port, json=True):
         try:
