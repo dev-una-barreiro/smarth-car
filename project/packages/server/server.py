@@ -11,10 +11,7 @@ class Server:
 
     functions = []
 
-    def handleClient(self, client, addr):
-
     def createServer(self):
-        print(self.HOST)
         self.socketServer.bind((self.HOST, self.PORT))
         self.socketServer.listen(10)
         while True:
@@ -26,14 +23,13 @@ class Server:
                     for functionObject in self.functions:
                         data = client.recv(1024).decode('utf-8')
                         print(data)
-
-                        listData = data.split(';')
-                        for itemData in listData:
-                            if len(itemData) > 1:
-                                dataJson: str = json.loads(itemData)
-                                if dataJson['type'] == functionObject['mensageType']:
-                                    resultFunction = functionObject['function']
-                                    resultFunction(dataJson['mensage'])
+                        # listData = data.split(';')
+                        # for itemData in listData:
+                        #     if len(itemData) > 1:
+                        #         dataJson: str = json.loads(itemData)
+                        #         if dataJson['type'] == functionObject['mensageType']:
+                        #             resultFunction = functionObject['function']
+                        #             resultFunction(dataJson['mensage'])
 
     def sendMessage(self, typeMessage, message, address, port, json=True):
         try:
