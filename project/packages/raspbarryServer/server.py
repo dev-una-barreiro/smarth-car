@@ -18,7 +18,6 @@ def sendMensage(mensage: str, type):
     mensageJson = '{jsonData};'.format(jsonData=jsonData)
     socketInstance.send(str.encode(
         mensageJson))
-    client, addr = socketInstance.accept()
     data = client.recv(1024).decode('utf-8')
     with data:
         print(data)
