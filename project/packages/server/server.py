@@ -37,6 +37,7 @@ class Server:
             client, addr = self.socketServer.accept()
             thread = threading.Thread(
                 target=self.handle_client, args=(client, addr))
+            thread.start()
 
     def sendMessage(self, typeMessage, message, address, port, json=True):
         try:
