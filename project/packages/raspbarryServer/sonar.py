@@ -1,12 +1,32 @@
 # coding:utf-8
+import json
+import socket
+import project.packages.env as env
 import sys
 import time
 import signal
-from project.packages.raspbarryServer.server import sendMensage
 import RPi.GPIO as GPIO
 # Define a numeração dos pinos de acordo com a placa
 GPIO.setmode(GPIO.BOARD)
 # Função para finalizar o acesso à GPIO do Raspberry de forma segura
+
+# pylint: disable-all
+
+HOST = env.currentEnv['serverHostRaspy']
+HOSTNTB = env.currentEnv['serverHostNtk']
+PORT = env.currentEnv['serverPort']
+
+socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socketInstance.connect((HOSTNTB, PORT))
+
+
+def sendMensage(mensage: str, type):
+    print(HOSTNTB, PORT)
+    jsonData = json.dumps({"mensage": mensage, "type": type})
+    mensageJson = '{jsonData};'.format(jsonData=jsonData)
+    socketInstance.send(str.encode(
+        mensageJson))
+    time.sleep(1)
 
 
 def clean():
