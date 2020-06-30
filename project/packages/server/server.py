@@ -34,19 +34,18 @@ class Server:
         while True:
             print('waiting for a connection')
             data, client = self.socketServer.recvfrom(1024)
-            with client:
-                print('Connected by', client)
-                if len(self.functions) > 0:
-                    listData = data.decode('utf-8').split(';')
-                    print(listData)
-                    for functionObject in self.functions:
-                        for itemData in listData:
-                            if len(itemData) > 1:
-                                dataJson: str = json.loads(itemData)
-                                if dataJson['type'] == functionObject['mensageType']:
-                                    resultFunction = functionObject['function']
-                                    resultFunction(dataJson['mensage'])
-                client.send('1'.encode())
+            print('Connected by', client)
+            listData = data.decode('utf-8').split(';')
+            print(listData)
+            if len(self.functions) > 0:
+
+                for functionObject in self.functions:
+                    for itemData in listData:
+                        if len(itemData) > 1:
+                            dataJson: str = json.loads(itemData)
+                            if dataJson['type'] == functionObject['mensageType']:
+                                resultFunction = functionObject['function']
+                                resultFunction(dataJson['mensage'])
             # thread = threading.Thread(
             #     target=self.handle_client, args=(client, addr))
             # thread.start()
