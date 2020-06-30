@@ -9,7 +9,7 @@ HOSTNTB = env.currentEnv['serverHostNtk']
 PORT = env.currentEnv['serverPort']
 
 socketInstance = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socketInstance.connect((HOSTNTB, PORT))
+socketInstance.bind((HOSTNTB, PORT))
 
 
 def sendMensage(mensage: str, type):
@@ -18,4 +18,7 @@ def sendMensage(mensage: str, type):
     mensageJson = '{jsonData};'.format(jsonData=jsonData)
     socketInstance.send(str.encode(
         mensageJson))
-    time.sleep(1)
+    client, addr = socketInstance.accept()
+    data = client.recv(1024).decode('utf-8')
+    with data:
+        print(data)
